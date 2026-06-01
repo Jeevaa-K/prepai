@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>PrepAI — AI-Powered Interview Training</title>
+  <meta name="description" content="Practice interviews with AI. Get detailed feedback on clarity, depth, and relevance for any role."/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<div class="dot-grid"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ════════════════════════════════════════ LANDING ════════ -->
+<section id="screen-landing" class="screen active">
+  <nav class="nav">
+    <a class="logo" href="#">
+      <div class="logo-icon">P</div>
+      <span class="logo-name">Prep<em>AI</em></span>
+    </a>
+    <div class="nav-pill">
+      <span class="nav-pill-dot"></span>
+      AI-Powered · Free
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+      Interview Intelligence Platform
+    </div>
+    <h1 class="hero-h1">
+      <span class="cyan">ACE</span><br/>
+      <span class="stroke">EVERY</span><br/>
+      INTERVIEW
+    </h1>
+    <p class="hero-sub">
+      Pick a role, answer realistic AI-generated questions via text or voice,
+      and receive expert feedback on every answer — instantly.
+    </p>
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-xl" onclick="showSetup()">
+        Start Practicing
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <a href="#features" class="btn btn-ghost btn-xl">See Features</a>
+    </div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-item">
+      <span class="stat-num">12</span>
+      <span class="stat-label">Job Roles</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Scoring Metrics</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Difficulty Levels</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Practice Sessions</span>
+    </div>
+  </div>
+
+  <div class="features" id="features">
+    <div class="feat-card">
+      <div class="feat-icon">🎯</div>
+      <div class="feat-title">Role-Specific Questions</div>
+      <div class="feat-desc">Questions tailored to your exact role — behavioral, technical, and situational — at the right difficulty level.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🎙️</div>
+      <div class="feat-title">Voice or Text Answers</div>
+      <div class="feat-desc">Practice answering by typing or using your microphone with live speech-to-text transcription.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <div class="feat-title">4-Dimension Feedback</div>
+      <div class="feat-desc">Every answer is scored on Clarity, Depth, Relevance, and Structure with specific, actionable feedback.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⭐</div>
+      <div class="feat-title">Model Answers</div>
+      <div class="feat-desc">See exactly what an exceptional answer looks like for every question to accelerate your learning.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">💡</div>
+      <div class="feat-title">Smart Hints</div>
+      <div class="feat-desc">Stuck? Reveal a hint explaining what a great answer must cover, without spoiling the answer.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📈</div>
+      <div class="feat-title">Session Summary</div>
+      <div class="feat-desc">End-of-session analytics show your average scores across all four dimensions so you know what to work on.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ SETUP ══════════ -->
+<section id="screen-setup" class="screen">
+  <nav class="nav">
+    <button class="btn-back" onclick="goTo('landing')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+    <a class="logo" href="#">
+      <div class="logo-icon">P</div>
+      <span class="logo-name">Prep<em>AI</em></span>
+    </a>
+    <div style="width:90px"></div>
+  </nav>
+
+  <div class="setup-wrap">
+    <div class="setup-hdr">
+      <div class="stepper">
+        <div class="step-node active" id="sn1">1</div>
+        <div class="step-connector"></div>
+        <div class="step-node" id="sn2">2</div>
+        <div class="step-connector"></div>
+        <div class="step-node" id="sn3">3</div>
+      </div>
+      <h2 class="setup-title">Configure your session</h2>
+      <p class="setup-sub">Choose a role, set difficulty, and pick how many questions you want</p>
+    </div>
+
+    <div class="roles-grid" id="roles-grid"><!-- JS --></div>
+
+    <div class="config-row">
+      <div class="config-group">
+        <label class="config-label">Difficulty Level</label>
+        <div class="chip-row" id="diff-chips">
+          <button class="chip active" data-v="entry-level">Entry Level</button>
+          <button class="chip" data-v="mid-level">Mid Level</button>
+          <button class="chip" data-v="senior">Senior</button>
+          <button class="chip" data-v="staff">Staff / Lead</button>
+        </div>
+      </div>
+      <div class="config-group">
+        <label class="config-label">Number of Questions</label>
+        <div class="chip-row" id="cnt-chips">
+          <button class="chip active" data-v="3">3</button>
+          <button class="chip" data-v="5">5</button>
+          <button class="chip" data-v="7">7</button>
+          <button class="chip" data-v="10">10</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-xl" id="start-btn" onclick="startSession()" disabled style="width:100%;justify-content:center;">
+      <span id="start-lbl">Select a role to continue</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ LOADING ════════ -->
+<section id="screen-loading" class="screen">
+  <div class="loading-wrap">
+    <div class="spinner">
+      <div class="sp-ring sp-ring-1"></div>
+      <div class="sp-ring sp-ring-2"></div>
+      <div class="sp-logo">P</div>
+    </div>
+    <h3 class="load-title">Building your interview...</h3>
+    <p class="load-sub">Crafting personalised questions for your role</p>
+    <div class="load-steps">
+      <div class="load-step" id="ls1"><div class="ls-dot"></div><span>Analysing role requirements</span></div>
+      <div class="load-step" id="ls2"><div class="ls-dot"></div><span>Generating interview questions</span></div>
+      <div class="load-step" id="ls3"><div class="ls-dot"></div><span>Preparing evaluation criteria</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ INTERVIEW ══════ -->
+<section id="screen-interview" class="screen">
+  <nav class="interview-nav nav-sticky">
+    <button class="btn btn-ghost btn-sm" onclick="confirmExit()">✕ Exit</button>
+    <div class="inav-center">
+      <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+      <span class="prog-label" id="prog-lbl">Question 1 of 5</span>
+    </div>
+    <div class="role-tag" id="inav-role">Role</div>
+  </nav>
+
+  <div class="interview-body">
+    <!-- Question -->
+    <div class="q-pane">
+      <div class="q-badges">
+        <span class="type-badge" id="q-type">Behavioral</span>
+        <span class="q-cat" id="q-cat">Leadership</span>
+      </div>
+      <div class="q-num" id="q-num">01</div>
+      <h2 class="q-text" id="q-text">Loading…</h2>
+      <div class="q-hint" id="q-hint-box" style="display:none">
+        <span class="q-hint-icon">💡</span>
+        <span id="q-hint-txt"></span>
+      </div>
+      <button class="btn-hint" id="btn-hint" onclick="toggleHint()">Show Hint</button>
+      <div class="q-time-guide" id="q-time-guide">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span id="q-time-txt">2–3 minutes</span>
+      </div>
+    </div>
+
+    <!-- Answer -->
+    <div class="a-pane">
+      <div class="a-tabs">
+        <button class="a-tab active" id="tab-text" onclick="setTab('text')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+          Text
+        </button>
+        <button class="a-tab" id="tab-voice" onclick="setTab('voice')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          Voice
+        </button>
+      </div>
+
+      <div class="a-input-wrap" id="panel-text">
+        <textarea class="answer-ta" id="answer-ta" rows="9"
+          placeholder="Type your answer here. Use specific examples, structure your thoughts, and aim for 150–300 words…"></textarea>
+        <div class="ta-footer">
+          <span class="word-ct" id="wc">0 words</span>
+          <span class="word-tgt">Target: 150–300 words</span>
+        </div>
+      </div>
+
+      <div class="a-input-wrap" id="panel-voice" style="display:none">
+        <div class="voice-wrap" id="voice-wrap">
+          <div class="viz-bars">
+            <div class="vbar"></div><div class="vbar"></div><div class="vbar"></div>
+            <div class="vbar"></div><div class="vbar"></div><div class="vbar"></div>
+            <div class="vbar"></div>
+          </div>
+          <button class="mic-btn" id="mic-btn" onclick="toggleRec()">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+          <div class="mic-status" id="mic-status">Click to start recording</div>
+          <div class="voice-transcript" id="voice-transcript" style="display:none">
+            <div class="vt-lbl">Live Transcript</div>
+            <div id="transcript-text"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="a-actions">
+        <button class="btn btn-ghost" onclick="skipQ()">Skip</button>
+        <button class="btn btn-primary" id="btn-submit" onclick="submitAnswer()">
+          Analyse Answer
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ FEEDBACK ═══════ -->
+<section id="screen-feedback" class="screen">
+  <nav class="interview-nav nav-sticky">
+    <button class="btn btn-ghost btn-sm" onclick="goTo('interview')">← Back</button>
+    <div class="inav-center">
+      <span class="prog-label" id="fb-lbl">Feedback · Q1</span>
+    </div>
+    <div class="role-tag" id="fb-role">Role</div>
+  </nav>
+  <div class="fb-wrap" id="fb-wrap"><!-- JS --></div>
+</section>
+
+<!-- ════════════════════════════════════════ RESULTS ════════ -->
+<section id="screen-results" class="screen">
+  <div class="results-wrap" id="results-wrap"><!-- JS --></div>
+</section>
+
+<!-- Toast -->
+<div class="toast" id="toast"><span id="toast-msg"></span></div>
+
+<!-- Exit modal -->
+<div class="overlay" id="exit-overlay" style="display:none" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h3 class="modal-title">Exit Session?</h3>
+    <p class="modal-body">Your current progress will be lost. Are you sure you want to exit?</p>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="closeModal()">Keep Going</button>
+      <button class="btn btn-danger" onclick="doExit()">Exit Session</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
